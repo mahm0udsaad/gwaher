@@ -26,8 +26,6 @@ const SYSTEM_PROMPT = `
 - detailing: تفصيل السيارات (car detailing)
 `;
 
-export const runtime = 'edge';
-
 export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();
 
