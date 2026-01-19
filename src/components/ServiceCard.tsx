@@ -11,7 +11,7 @@ interface ServiceCardProps {
   description: string;
   image: string;
   href: string;
-  features?: string[];
+  features?: readonly string[];
   index?: number;
   layout?: 'vertical' | 'horizontal';
   reverse?: boolean;
