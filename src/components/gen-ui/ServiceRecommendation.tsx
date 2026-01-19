@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+import Image, { type StaticImageData } from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Check, ArrowRight, Sparkles } from 'lucide-react';
@@ -20,7 +20,7 @@ interface ServiceRecommendationProps {
   onBookNow?: (serviceId: string) => void;
 }
 
-const serviceImages: Record<ServiceId, any> = {
+const serviceImages: Record<ServiceId, StaticImageData> = {
   thermalTinting: thermalImg,
   ppf: ppfImg,
   ceramic: ceramicImg,

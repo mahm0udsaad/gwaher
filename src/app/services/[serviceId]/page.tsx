@@ -1,5 +1,10 @@
 import ServiceDetail from '@/screens/ServiceDetail';
 
-export default function ServiceDetailPage({ params }: { params: { serviceId: string } }) {
-  return <ServiceDetail serviceId={params.serviceId} />;
+export default async function ServiceDetailPage({
+  params,
+}: {
+  params: Promise<{ serviceId: string }>;
+}) {
+  const { serviceId } = await params;
+  return <ServiceDetail serviceId={serviceId} />;
 }

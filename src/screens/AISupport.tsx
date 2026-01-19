@@ -13,6 +13,28 @@ import { cn } from '@/lib/utils';
 import { ServicesDisplay } from '@/components/gen-ui/ServicesDisplay';
 import { WhyChooseUs } from '@/components/gen-ui/WhyChooseUs';
 
+type RecordLike = Record<string, unknown>;
+const isRecordLike = (value: unknown): value is RecordLike => typeof value === 'object' && value !== null;
+
+const isTextPart = (part: unknown): part is { type: 'text'; text: string } =>
+  isRecordLike(part) && part.type === 'text' && typeof part.text === 'string';
+
+const isToolPart = (part: unknown): part is { type: string; state?: string; output?: unknown } =>
+  isRecordLike(part) && typeof part.type === 'string' && part.type.startsWith('tool-');
+
+const getServiceIds = (output: unknown): string[] | null => {
+  if (!isRecordLike(output)) return null;
+  const ids = output.serviceIds;
+  if (!Array.isArray(ids)) return null;
+  if (!ids.every((id) => typeof id === 'string')) return null;
+  return ids;
+};
+
+const getShowFlag = (output: unknown): boolean => {
+  if (!isRecordLike(output)) return false;
+  return output.show === true;
+};
+
 const AISupport = () => {
   const { t, dir, language } = useLanguage();
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -43,7 +65,7 @@ const AISupport = () => {
         },
       ]);
     }
-  }, [language, t.aiSupport.welcomeMessage, setMessages]);
+  }, [language, t.aiSupport.welcomeMessage, messages.length, setMessages]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -100,7 +122,8 @@ const AISupport = () => {
             {messages.map((message) => {
               const isUser = message.role === 'user';
               // Extract text from parts
-              const textParts = message.parts?.filter((part: any) => part.type === 'text') || [];
+              const parts = (message.parts ?? []) as unknown[];
+              const textParts = parts.filter(isTextPart);
               const hasTextContent = textParts.length > 0;
 
               return (
@@ -125,14 +148,14 @@ const AISupport = () => {
                               : 'bg-card border border-border shadow-sm',
                           )}
                         >
-                          {textParts.map((part: any, idx: number) => (
+                          {textParts.map((part, idx) => (
                             <p key={idx} className="whitespace-pre-wrap">{part.text}</p>
                           ))}
                         </div>
                       )}
 
                       {/* Render Tool Parts (Generative UI) */}
-                      {message.parts?.filter((part: any) => part.type?.startsWith('tool-')).map((part: any, idx: number) => {
+                      {parts.filter(isToolPart).map((part, idx) => {
                         // Handle displayServices tool
                         if (part.type === 'tool-displayServices') {
                           if (part.state === 'input-available') {
@@ -144,10 +167,11 @@ const AISupport = () => {
                               </div>
                             );
                           }
-                          if (part.state === 'output-available' && part.output?.serviceIds) {
+                          const serviceIds = part.state === 'output-available' ? getServiceIds(part.output) : null;
+                          if (serviceIds) {
                             return (
                               <div key={idx} className="w-full">
-                                <ServicesDisplay serviceIds={part.output.serviceIds} />
+                                <ServicesDisplay serviceIds={serviceIds} />
                               </div>
                             );
                           }
@@ -164,7 +188,7 @@ const AISupport = () => {
                               </div>
                             );
                           }
-                          if (part.state === 'output-available' && part.output?.show) {
+                          if (part.state === 'output-available' && getShowFlag(part.output)) {
                             return (
                               <div key={idx} className="w-full">
                                 <WhyChooseUs />
