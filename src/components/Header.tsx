@@ -1,5 +1,10 @@
+
+'use client';
+
 import { useState, useEffect, useCallback } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { Menu, X, Sun, Moon, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -11,7 +16,7 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { language, setLanguage, t, dir } = useLanguage();
   const { theme, toggleTheme } = useTheme();
-  const location = useLocation();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,7 +28,7 @@ export function Header() {
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
-  }, [location.pathname]);
+  }, [pathname]);
 
   const toggleLanguage = useCallback(() => {
     setLanguage(language === 'en' ? 'ar' : 'en');
@@ -37,7 +42,7 @@ export function Header() {
     { href: '/ai-support', label: t.nav.aiSupport },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => pathname === path;
 
   return (
     <header
@@ -51,17 +56,16 @@ export function Header() {
       <div className="container-main">
         <nav className="flex items-center justify-between">
           {/* Logo */}
-          <Link
-            to="/"
-            className="flex items-center gap-3 group"
-          >
-            <div className="relative w-10 h-10 flex items-center justify-center">
-              <div className="absolute inset-0 bg-gradient-gold rounded-lg opacity-90 group-hover:opacity-100 transition-opacity" />
-              <span className="relative text-xl font-bold text-primary-foreground">A</span>
-            </div>
-            <span className="text-xl font-bold tracking-tight">
-              Auto<span className="text-primary">Shield</span>
-            </span>
+          <Link href="/" className="flex items-center gap-3 group">
+              <Image
+                src="/logo.png"
+                alt="Wahag"
+                width={60}
+                height={60}
+                className="object-contain rounded-md"
+                priority
+              />
+          
           </Link>
 
           {/* Desktop Navigation */}
@@ -69,7 +73,7 @@ export function Header() {
             {navLinks.map((link) => (
               <Link
                 key={link.href}
-                to={link.href}
+                href={link.href}
                 className={cn(
                   'text-sm font-medium transition-colors link-underline',
                   isActive(link.href)
@@ -106,7 +110,7 @@ export function Header() {
               {language === 'en' ? 'العربية' : 'English'}
             </Button>
             <Button variant="default" size="sm" asChild className="rounded-full px-6">
-              <Link to="/contact">{t.hero.cta}</Link>
+              <Link href="/contact">{t.hero.cta}</Link>
             </Button>
           </div>
 
@@ -150,7 +154,7 @@ export function Header() {
             {navLinks.map((link) => (
               <Link
                 key={link.href}
-                to={link.href}
+                href={link.href}
                 className={cn(
                   'block px-4 py-3 rounded-xl text-sm font-medium transition-colors',
                   isActive(link.href)

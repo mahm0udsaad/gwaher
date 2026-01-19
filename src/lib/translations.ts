@@ -57,7 +57,7 @@ export const translations = {
 
     // Why Choose Us
     whyUs: {
-      title: 'Why Choose AutoShield',
+      title: 'Why Choose Wahag',
       subtitle: 'Excellence in Every Detail',
       items: [
         {
@@ -82,13 +82,13 @@ export const translations = {
     // CTA Section
     cta: {
       title: 'Ready to Protect Your Vehicle?',
-      subtitle: 'Schedule your consultation today and discover the AutoShield difference.',
+      subtitle: 'Schedule your consultation today and discover the Wahag difference.',
       button: 'Get Started',
     },
 
     // About Page
     about: {
-      title: 'About AutoShield',
+      title: 'About Wahag',
       subtitle: 'Premium Automotive Protection Since 2015',
       mission: 'Our Mission',
       missionText: 'To provide the highest quality automotive protection services that preserve and enhance the value of every vehicle we touch.',
@@ -144,7 +144,17 @@ export const translations = {
       subtitle: 'Get instant answers to your questions',
       placeholder: 'Type your message...',
       send: 'Send',
-      welcomeMessage: 'Welcome to AutoShield! I\'m your AI assistant specialized in vehicle protection services. I can help you choose the best solutions to protect your vehicle from heat, UV rays, and external damage. How can I assist you today?',
+      welcomeMessage: 'Welcome to Wahag! I\'m your AI assistant specialized in vehicle protection services. I can help you choose the best solutions to protect your vehicle from heat, UV rays, and external damage. How can I assist you today?',
+      assistantName: 'Wahag AI',
+      assistantRole: 'Vehicle protection specialist',
+      poweredBy: 'Powered by Google Gemini',
+      suggestedServices: 'Recommended services',
+      thinking: 'Thinking...',
+      quickPrompts: [
+        'What is the best service for heat protection?',
+        'Compare PPF and ceramic coating',
+        'I want a rich, modern, powerful AI agent',
+      ],
     },
 
     // Footer
@@ -222,7 +232,7 @@ export const translations = {
 
     // Why Choose Us
     whyUs: {
-      title: 'لماذا تختار أوتوشيلد',
+      title: 'لماذا تختار وهاج',
       subtitle: 'التميز في كل تفصيل',
       items: [
         {
@@ -247,13 +257,13 @@ export const translations = {
     // CTA Section
     cta: {
       title: 'مستعد لحماية سيارتك؟',
-      subtitle: 'حدد موعد استشارتك اليوم واكتشف فرق أوتوشيلد.',
+      subtitle: 'حدد موعد استشارتك اليوم واكتشف فرق وهاج.',
       button: 'ابدأ الآن',
     },
 
     // About Page
     about: {
-      title: 'عن أوتوشيلد',
+      title: 'عن وهاج',
       subtitle: 'حماية السيارات المتميزة منذ 2015',
       mission: 'مهمتنا',
       missionText: 'تقديم أعلى جودة من خدمات حماية السيارات التي تحافظ على قيمة كل سيارة نتعامل معها وتعززها.',
@@ -309,7 +319,17 @@ export const translations = {
       subtitle: 'احصل على إجابات فورية لأسئلتك',
       placeholder: 'اكتب رسالتك...',
       send: 'إرسال',
-      welcomeMessage: 'مرحباً بك في AutoShield! أنا مساعدك الذكي المتخصص في خدمات حماية السيارات. يمكنني مساعدتك في اختيار أفضل الحلول لحماية مركبتك من الحرارة والأشعة فوق البنفسجية والأضرار الخارجية. كيف يمكنني مساعدتك اليوم؟',
+      welcomeMessage: 'مرحباً بك في Wahag! أنا مساعدك الذكي المتخصص في خدمات حماية السيارات. يمكنني مساعدتك في اختيار أفضل الحلول لحماية مركبتك من الحرارة والأشعة فوق البنفسجية والأضرار الخارجية. كيف يمكنني مساعدتك اليوم؟',
+      assistantName: 'مساعد أوتوشيلد',
+      assistantRole: 'خبير حماية السيارات',
+      poweredBy: 'مدعوم من Google Gemini',
+      suggestedServices: 'الخدمات المقترحة',
+      thinking: 'جارٍ التفكير...',
+      quickPrompts: [
+        'ما أفضل خدمة لحماية السيارة من الحرارة؟',
+        'قارن بين فيلم الحماية وطلاء السيراميك',
+        'أريد وكيلاً ذكياً غنياً وحديثاً وقوياً',
+      ],
     },
 
     // Footer

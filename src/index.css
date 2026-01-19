@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* AutoShield Premium Design System - HSL Colors Only */
+/* Wahag Premium Design System - HSL Colors Only */
 
 @layer base {
   :root {
@@ -38,7 +38,7 @@
 
     --radius: 0.75rem;
 
-    /* Custom AutoShield tokens */
+    /* Custom Wahag tokens */
     --gold: 24 85% 55%;
     --gold-dark: 24 85% 45%;
     --gold-glow: 24 100% 65%;
@@ -97,7 +97,7 @@
     --input: 0 0% 18%;
     --ring: 24 85% 55%;
 
-    /* Custom AutoShield tokens - Dark */
+    /* Custom Wahag tokens - Dark */
     --gold: 24 85% 55%;
     --gold-dark: 24 85% 45%;
     --gold-glow: 24 100% 65%;

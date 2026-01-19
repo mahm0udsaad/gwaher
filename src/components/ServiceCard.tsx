@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+'use client';
+
+import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -63,7 +65,7 @@ export function ServiceCard({
             </ul>
           )}
           <Button asChild variant="default" className="rounded-full px-8 group">
-            <Link to={href}>
+            <Link href={href}>
               {t.services.learnMore}
               <ArrowRight className="w-4 h-4 ms-2 group-hover:translate-x-1 transition-transform" />
             </Link>
@@ -91,7 +93,7 @@ export function ServiceCard({
           {description}
         </p>
         <Button asChild variant="ghost" className="p-0 h-auto text-primary hover:text-primary/80 group/btn">
-          <Link to={href} className="flex items-center gap-2">
+          <Link href={href} className="flex items-center gap-2">
             {t.services.learnMore}
             <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
           </Link>
