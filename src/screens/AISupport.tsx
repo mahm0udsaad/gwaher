@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Send, Sparkles } from 'lucide-react';
 import { Chat, useChat } from '@ai-sdk/react';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport, type UIMessage } from 'ai';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -41,24 +41,21 @@ const AISupport = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [input, setInput] = useState('');
 
-  const chat = useMemo(
-    () =>
-      new Chat({
-        transport: new DefaultChatTransport({ api: '/api/ai-support' }),
-        messages: [
-          {
-            id: 'welcome',
-            role: 'assistant',
-            parts: [{ type: 'text', text: t.aiSupport.welcomeMessage }],
-          },
-        ],
-      }),
-    // Keep the chat instance stable; we update the welcome message via the effect below
-    // when the language changes and the user hasn't started a conversation.
-    [],
-  );
+  const chatRef = useRef<Chat<UIMessage> | null>(null);
+  if (!chatRef.current) {
+    chatRef.current = new Chat({
+      transport: new DefaultChatTransport({ api: '/api/ai-support' }),
+      messages: [
+        {
+          id: 'welcome',
+          role: 'assistant',
+          parts: [{ type: 'text', text: t.aiSupport.welcomeMessage }],
+        },
+      ],
+    });
+  }
 
-  const { messages, status, sendMessage, setMessages } = useChat({ chat });
+  const { messages, status, sendMessage, setMessages } = useChat({ chat: chatRef.current });
 
   const isLoading = status === 'submitted' || status === 'streaming';
 
