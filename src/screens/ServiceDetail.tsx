@@ -154,7 +154,14 @@ const ServiceDetail = ({ serviceId }: { serviceId: string }) => {
     );
   }
 
-  const serviceTranslations: Record<ServiceKey, typeof t.services.thermalTinting> = {
+  type ServiceTranslation = {
+    name: string;
+    shortDesc: string;
+    description: string;
+    features: readonly string[];
+  };
+
+  const serviceTranslations: Record<ServiceKey, ServiceTranslation> = {
     'thermal-tinting': t.services.thermalTinting,
     'ppf': t.services.ppf,
     'ceramic': t.services.ceramic,

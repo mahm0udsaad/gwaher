@@ -178,7 +178,7 @@ const Index = () => {
       {/* Workshop Showcase */}
       <section className="relative h-[60vh] min-h-[400px]">
         <img
-          src={workshop}
+          src={workshop.src}
           alt="Wahag Workshop"
           className="absolute inset-0 w-full h-full object-cover"
         />
